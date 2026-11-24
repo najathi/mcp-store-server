@@ -1,0 +1,62 @@
+{
+  "name": "mcp-store-server",
+  "version": "1.0.0",
+  "description": "A secure Model Context Protocol (MCP) server that lets Claude, ChatGPT and Cursor work with online-store data: scoped API tokens, dry-run/confirm writes, PII masking and an audit log.",
+  "type": "module",
+  "license": "MIT",
+  "author": "Mohamed Najathi (https://github.com/najathi)",
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "claude",
+    "ai-agents",
+    "sqlite",
+    "typescript"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "main": "dist/index.js",
+  "bin": {
+    "mcp-store-server": "dist/index.js"
+  },
+  "files": [
+    "dist",
+    "content"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "start": "node dist/index.js stdio",
+    "start:http": "node dist/index.js http",
+    "dev": "tsx src/index.ts stdio",
+    "dev:http": "tsx src/index.ts http",
+    "seed": "tsx src/index.ts seed",
+    "demo:stdio": "tsx scripts/demo-stdio.ts",
+    "demo:http": "tsx scripts/demo-http.ts",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "check": "npm run lint && npm run typecheck && npm test"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.32.2",
+    "better-sqlite3": "^12.11.1",
+    "express": "^5.3.0",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.5",
+    "@types/better-sqlite3": "^9.6.0",
+    "@types/express": "^5.0.6",
+    "@types/node": "^20.19.43",
+    "eslint": "^9.39.5",
+    "prettier": "^3.10.1",
+    "tsx": "^4.23.15",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.74.0",
+    "vitest": "^4.1.12"
+  }
+}

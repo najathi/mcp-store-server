@@ -1,0 +1,18 @@
+services:
+  mcp-store:
+    build: .
+    image: mcp-store-server:local
+    ports:
+      - '127.0.0.1:3000:3000'
+    environment:
+      # Required for HTTP: name:token:scopes entries. Put real values in .env, never in git.
+      API_TOKENS: ${API_TOKENS:?Set API_TOKENS in .env (see .env.example)}
+      # Host names (no port) clients use to reach the server; localhost/127.0.0.1 are always allowed.
+      ALLOWED_HOSTS: ${ALLOWED_HOSTS:-localhost}
+      RATE_LIMIT_PER_MINUTE: ${RATE_LIMIT_PER_MINUTE:-60}
+    volumes:
+      - store-data:/data
+    restart: unless-stopped
+
+volumes:
+  store-data:
